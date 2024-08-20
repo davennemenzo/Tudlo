@@ -11,7 +11,7 @@
   >
     <v-card-item>
       <v-card-title>
-        Login
+        Signup
       </v-card-title>
 
       <v-card-subtitle>

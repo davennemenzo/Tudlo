@@ -19,3 +19,11 @@ Route::get('/services', function () {
 })->name('services');
 
 
+Route::get('/signup', function () {
+    return Inertia::render('Auth/Signup');
+})->name('signup');
+
+
+Route::get('/login', function () {
+    return Inertia::render('Auth/Login');
+})->name('login');
