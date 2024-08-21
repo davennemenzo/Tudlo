@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +23,14 @@ Route::get('/services', function () {
 Route::get('/signup', function () {
     return Inertia::render('Auth/Signup');
 })->name('signup');
+Route::post('/signup', [AuthController::class, 'signup']);
 
 
 Route::get('/login', function () {
     return Inertia::render('Auth/Login');
 })->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+
+
+

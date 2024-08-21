@@ -1,26 +1,82 @@
-<script setup
->
+<script setup>
+import Navbar from "@/Layouts/Navbar.vue";
+import { useForm } from "@inertiajs/vue3";
 
+const form = useForm({
+    name: null,
+    email: null,
+    password: null,
+    password_confirmation: null,
+});
+
+const submit = () => {
+    form.post(route("signup"), {
+        onError: () => {
+            form.reset("password", "password_confirmation");
+        },
+    });
+};
 </script>
 
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="344"
-    hover
-  >
-    <v-card-item>
-      <v-card-title>
-        Signup
-      </v-card-title>
+    <Navbar></Navbar>
 
-      <v-card-subtitle>
-        Card subtitle secondary text
-      </v-card-subtitle>
-    </v-card-item>
+    <v-card class="mx-auto" max-width="344" hover>
+        <v-card-item>
+            <v-card-title> Signup </v-card-title>
+            <v-form @submit.prevent="submit">
+                <v-text-field
+                    v-model="form.name"
+                    label="Name"
+                    outlined
+                    dense
+                    class="mb-3"
+                    :error-messages="form.errors.name"
+                >
+                </v-text-field>
+                <v-text-field
+                    v-model="form.email"
+                    label="Email"
+                    outlined
+                    dense
+                    class="mb-3"
+                    :error-messages="form.errors.email"
+                ></v-text-field>
 
-    <v-card-text>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </v-card-text>
-  </v-card>
+                <v-text-field
+                    v-model="form.password"
+                    label="Password"
+                    outlined
+                    dense
+                    type="password"
+                    class="mb-3"
+                    :error-messages="form.errors.password"
+                ></v-text-field>
+
+                <v-text-field
+                    v-model="form.password_confirmation"
+                    label="Confirm Password"
+                    outlined
+                    dense
+                    type="password"
+                    class="mb-3"
+                ></v-text-field>
+
+                <p class="text-center mb-2">
+                    Already have an account?
+                    <a :href="route('login')" class="text-teal-accent-4"
+                        >Log in</a
+                    >
+                </p>
+
+                <v-btn
+                    type="submit"
+                    class="me-4 w-full py-4 pb-8 hover:opacity-80 bg-teal-lighten-1 text-center"
+                    :disabled="form.processing"
+                >
+                    Register
+                </v-btn>
+            </v-form>
+        </v-card-item>
+    </v-card>
 </template>
