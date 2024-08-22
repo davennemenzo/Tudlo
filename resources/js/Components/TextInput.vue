@@ -1,10 +1,10 @@
 <script setup>
-    defineProps({
-        name: {
+    const props = defineProps({
+        inputName: {
             type: String,
-            required: true,
+            default: 'name',
         },
-        type: {
+        inputType: {
             type: String,
             default: 'text',
         },
@@ -14,12 +14,10 @@
 <template>
     <div>
         <v-text-field
+
+                    :label="props.inputName"
+                    :type="props.inputType"
                     v-model="form.name"
-                    label="name"
-                    outlined
-                    dense
-                    class="mb-3"
-                    :error-messages="form.errors.name"
                 >
                 </v-text-field>
     </div>

@@ -1,4 +1,5 @@
 <script setup>
+import Button from "@/Components/Button.vue";
 import Navbar from "@/Layouts/Navbar.vue";
 import { useForm } from "@inertiajs/vue3";
 
@@ -55,9 +56,9 @@ const submit = () => {
 
                 <v-text-field
                     v-model="form.password_confirmation"
-                    label="Confirm Password"
-                    outlined
-                    dense
+                    variant="outlined"
+
+                    label="Password"
                     type="password"
                     class="mb-3"
                 ></v-text-field>
@@ -69,13 +70,15 @@ const submit = () => {
                     >
                 </p>
 
-                <v-btn
-                    type="submit"
-                    class="me-4 w-full py-4 pb-8 hover:opacity-80 bg-teal-lighten-1 text-center"
-                    :disabled="form.processing"
-                >
-                    Register
-                </v-btn>
+
+
+                <Button
+                type="submit"
+                :disabled="form.processing"
+                label="Submit"
+                class="me-4 w-full py-4 pb-8 h-3 "
+                
+                >Submit</Button>
             </v-form>
         </v-card-item>
     </v-card>
